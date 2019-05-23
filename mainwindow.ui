@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>630</width>
+    <height>493</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>App</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QPushButton" name="pbAdd">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>80</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Dodaj</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbDelete">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>20</y>
+      <width>80</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Usuń</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="leText">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>20</y>
+      <width>261</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="lwMain">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>50</y>
+      <width>601</width>
+      <height>381</height>
+     </rect>
+    </property>
+    <property name="dragEnabled">
+     <bool>true</bool>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>630</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuxxx">
+    <property name="title">
+     <string>Plik</string>
+    </property>
+    <addaction name="actionOtw_rz"/>
+    <addaction name="actionZapisz"/>
+    <addaction name="actionZapisz_jako"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuPomoc">
+    <property name="title">
+     <string>Pomoc</string>
+    </property>
+    <addaction name="actionInformacje_o_programie"/>
+   </widget>
+   <widget class="QMenu" name="menuBaza">
+    <property name="title">
+     <string>Baza</string>
+    </property>
+    <addaction name="actionConnect"/>
+    <addaction name="actionDisconnect"/>
+    <addaction name="actionDbPath"/>
+    <addaction name="actionPrint_records"/>
+   </widget>
+   <addaction name="menuxxx"/>
+   <addaction name="menuBaza"/>
+   <addaction name="menuPomoc"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionOtw_rz">
+   <property name="text">
+    <string>Open</string>
+   </property>
+  </action>
+  <action name="actionZapisz">
+   <property name="text">
+    <string>Save</string>
+   </property>
+  </action>
+  <action name="actionInformacje_o_programie">
+   <property name="text">
+    <string>Informacje o programie</string>
+   </property>
+  </action>
+  <action name="actionZapisz_jako">
+   <property name="text">
+    <string>Save as</string>
+   </property>
+  </action>
+  <action name="actionConnect">
+   <property name="text">
+    <string>Connect</string>
+   </property>
+  </action>
+  <action name="actionDisconnect">
+   <property name="text">
+    <string>Disconnect</string>
+   </property>
+  </action>
+  <action name="actionDbPath">
+   <property name="text">
+    <string>DB path</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionPrint_records">
+   <property name="text">
+    <string>Print records</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
