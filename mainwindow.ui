@@ -36,6 +36,9 @@
       <height>25</height>
      </rect>
     </property>
+    <property name="acceptDrops">
+     <bool>true</bool>
+    </property>
     <property name="text">
      <string>Usuń</string>
     </property>
@@ -55,12 +58,25 @@
      <rect>
       <x>10</x>
       <y>50</y>
-      <width>601</width>
+      <width>251</width>
       <height>381</height>
      </rect>
     </property>
     <property name="dragEnabled">
      <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>20</y>
+      <width>80</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>PushButton</string>
     </property>
    </widget>
   </widget>

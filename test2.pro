@@ -27,11 +27,13 @@ CONFIG += c++11
 SOURCES += \
         dbmanager.cpp \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+        noteitem.cpp
 
 HEADERS += \
         dbmanager.h \
-        mainwindow.h
+        mainwindow.h \
+        noteitem.h
 
 FORMS += \
         mainwindow.ui

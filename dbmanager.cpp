@@ -1,4 +1,5 @@
 #include "dbmanager.h"
+#include "noteitem.h"
 #include <qstring.h>
 #include <qdebug.h>
 #include <QtSql/QSqlQuery>
@@ -47,13 +48,24 @@ QStringList DbManager::PrintNotes()
 {
     QStringList list;
     QSqlQuery query("SELECT * FROM notes");
-    int idNote = query.record().indexOf("note");
+    auto idNote = query.record().indexOf("note");
+    auto idId = query.record().indexOf("id");
     while (query.next())
     {
-       QString note = query.value(idNote).toString();
+       auto note = query.value(idNote).toString();
        list.append(note);
        qDebug() << note;
     }
 
     return list;
+}
+
+bool DbManager::DeleteNote()
+{
+    return true;
+}
+
+void DownloadItems(QVector<NoteItem> &vector)
+{
+    //
 }

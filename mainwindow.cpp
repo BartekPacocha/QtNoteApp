@@ -44,6 +44,7 @@ void MainWindow::on_pbDelete_clicked()
     {
         int row = ui->lwMain->currentRow();
         ui->lwMain->takeItem(row);
+        db->DeleteNote();
     }
 }
 
@@ -105,5 +106,5 @@ void MainWindow::dbPrint()
 
 void MainWindow::on_lwMain_itemClicked(QListWidgetItem *item)
 {
-    qDebug() << item->text();
+    qDebug() << item->text();;
 }
