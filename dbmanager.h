@@ -13,11 +13,11 @@ public:
     DbManager();
     DbManager(const QString& path);
     bool AddNote(const QString& note);
-    bool DeleteNote();
+    bool DeleteNote(int id);
     QStringList PrintNotes();
     void Disconnect();
-    bool isConnect() {return m_db.isOpen(); }
-    void DownloadItems(QVector<NoteItem> &vector);
+    void DownloadItems(QVector<NoteItem*> &vector);
+    // bool isConnect(); /*{ return m_db.isOpen(); }*/
 private:
     QSqlDatabase m_db;
 };

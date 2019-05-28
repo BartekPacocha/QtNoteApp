@@ -17,7 +17,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    DbManager* db = NULL;
+    DbManager* db = nullptr;
+    QVector<NoteItem*> vector;
 
 private slots:
 
@@ -35,6 +36,8 @@ private slots:
 
     void on_lwMain_itemClicked(QListWidgetItem *item);
 
+    void on_twMain_cellClicked(int row, int column);
+
 private:
     Ui::MainWindow *ui;
     QStringListModel *model;
@@ -45,6 +48,10 @@ private:
     void dbDisconnect();
     void exitApp();
     void dbPrint();
+    void FillVector();
+    void PrintItem(NoteItem *item);
+    void RemoveAllRow();
+    bool DeleteItem(int id);
     QString fileName;
 };
 

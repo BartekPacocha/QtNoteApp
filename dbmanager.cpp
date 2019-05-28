@@ -60,12 +60,28 @@ QStringList DbManager::PrintNotes()
     return list;
 }
 
-bool DbManager::DeleteNote()
+bool DbManager::DeleteNote(int id)
 {
-    return true;
+    QSqlQuery query("DELETE FROM notes WHERE id = ?");
+    query.addBindValue(id);
+    if(query.exec()) {
+        qDebug() << "deleted ok";
+        return true;
+    }
+    else
+        return false;
 }
 
-void DownloadItems(QVector<NoteItem> &vector)
+void DbManager::DownloadItems(QVector<NoteItem*> &vector)
 {
-    //
+    QSqlQuery query("SELECT * FROM notes");
+    auto idNote = query.record().indexOf("note");
+    auto idId = query.record().indexOf("id");
+    while (query.next()) {
+        auto id = query.value(idId).toInt();
+        auto note = query.value(idNote).toString();
+        NoteItem *item = new NoteItem(id, note);
+        vector.push_back(item);
+        qDebug() << id << " " << note;
+    }
 }

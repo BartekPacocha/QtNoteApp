@@ -14,6 +14,12 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     createActions();
+    ui->twMain->hideColumn(0);
+    ui->twMain->horizontalHeader()->setStretchLastSection(true);
+
+    dbConnect();
+    FillVector();
+    dbPrint();
 }
 
 MainWindow::~MainWindow()
@@ -23,28 +29,40 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pbAdd_clicked()
 {
-    if(ui->leText->text() != "")
-    {
-        // add to database
-        if(db){
-            if(db->isConnect()) {
-                db->AddNote(ui->leText->text());
-            }
-             AddItem();
-        } else {
-            qDebug() << "Adding to db failed";
-        }
-
-    }
+    AddItem();
 }
 
 void MainWindow::on_pbDelete_clicked()
 {
-    if(ui->lwMain->currentItem() != NULL)
+    auto t = ui->twMain;
+    if(t->currentItem() != nullptr)
     {
-        int row = ui->lwMain->currentRow();
-        ui->lwMain->takeItem(row);
-        db->DeleteNote();
+        auto id = t->item(t->currentRow(), 0)->text();
+        if(DeleteItem(id.toInt())) {
+            RemoveAllRow();
+            FillVector();
+            dbPrint();
+        }
+
+        // db->DeleteNote();
+    }
+}
+
+bool MainWindow::DeleteItem(int id)
+{
+    if(db)
+        if(db->DeleteNote(id))
+            return true;
+
+     return false;
+}
+
+void MainWindow::RemoveAllRow()
+{
+    auto c = ui->twMain->rowCount();
+    while (c >= 0) {
+        ui->twMain->removeRow(c-1);
+        c--;
     }
 }
 
@@ -58,8 +76,21 @@ void MainWindow::on_leText_returnPressed()
 
 void MainWindow::AddItem()
 {
-    ui->lwMain->addItem(ui->leText->text());
-    ui->leText->clear(); // TODO: clear in other function
+    // Add to db
+    auto text = ui->leText->text();
+    if(db && text.count() > 0)
+        db->AddNote(text);
+    // Refresh view
+    FillVector();
+    dbPrint();
+}
+
+void MainWindow::PrintItem(NoteItem *item)
+{
+    auto t = ui->twMain;
+    t->insertRow(t->rowCount());
+    t->setItem(t->rowCount()-1, 0, new QTableWidgetItem(item->GetStringId()));
+    t->setItem(t->rowCount()-1, 1, new QTableWidgetItem(item->GetNote()));
 }
 
 void MainWindow::createActions()
@@ -69,6 +100,8 @@ void MainWindow::createActions()
     connect(ui->actionDisconnect, &QAction::triggered, this, &MainWindow::dbDisconnect);
     connect(ui->actionExit, &QAction::triggered, this, &MainWindow::exitApp);
     connect(ui->actionPrint_records, &QAction::triggered, this, &MainWindow::dbPrint);
+    connect(ui->actionFill_vector, &QAction::triggered, this, &MainWindow::FillVector);
+    connect(ui->actionDelete_all_rows, &QAction::triggered, this, &MainWindow::RemoveAllRow);
 }
 
 bool MainWindow::save()
@@ -98,13 +131,30 @@ void MainWindow::exitApp()
 
 void MainWindow::dbPrint()
 {
-    if(db){
-        ui->lwMain->clear();
-        ui->lwMain->addItems(db->PrintNotes());
+    if(vector.count() > 0) {
+        NoteItem *item;
+        foreach (item, vector) {
+            PrintItem(item);
+        }
     }
 }
 
 void MainWindow::on_lwMain_itemClicked(QListWidgetItem *item)
 {
-    qDebug() << item->text();;
+    qDebug() << item->text();
+}
+
+void MainWindow::on_twMain_cellClicked(int row, int column)
+{
+    auto t = ui->twMain;
+    auto id = t->item(row, 0)->text();
+    qDebug() << id;
+}
+
+void MainWindow::FillVector()
+{
+    if (db) {
+        vector.clear();
+        db->DownloadItems(vector);
+    }
 }

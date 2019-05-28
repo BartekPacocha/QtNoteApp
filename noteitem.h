@@ -11,6 +11,7 @@ public:
     NoteItem(int id, QString note);
     void SetId(int id) { Id = id; }
     int GetId() { return Id; }
+    QString GetStringId() { return QString::number(Id); }
     void SetNote(QString note) { Note = note; }
     QString GetNote() { return Note; }
 private:

@@ -48,36 +48,30 @@
      <rect>
       <x>200</x>
       <y>20</y>
-      <width>261</width>
+      <width>421</width>
       <height>25</height>
      </rect>
     </property>
    </widget>
-   <widget class="QListWidget" name="lwMain">
+   <widget class="QTableWidget" name="twMain">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>50</y>
-      <width>251</width>
+      <width>611</width>
       <height>381</height>
      </rect>
     </property>
-    <property name="dragEnabled">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>490</x>
-      <y>20</y>
-      <width>80</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>PushButton</string>
-    </property>
+    <column>
+     <property name="text">
+      <string>ID</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Note</string>
+     </property>
+    </column>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -112,9 +106,17 @@
     <addaction name="actionDisconnect"/>
     <addaction name="actionDbPath"/>
     <addaction name="actionPrint_records"/>
+    <addaction name="actionFill_vector"/>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>View</string>
+    </property>
+    <addaction name="actionDelete_all_rows"/>
    </widget>
    <addaction name="menuxxx"/>
    <addaction name="menuBaza"/>
+   <addaction name="menuView"/>
    <addaction name="menuPomoc"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -161,6 +163,16 @@
   <action name="actionPrint_records">
    <property name="text">
     <string>Print records</string>
+   </property>
+  </action>
+  <action name="actionFill_vector">
+   <property name="text">
+    <string>Fill vector</string>
+   </property>
+  </action>
+  <action name="actionDelete_all_rows">
+   <property name="text">
+    <string>Delete all rows</string>
    </property>
   </action>
  </widget>
